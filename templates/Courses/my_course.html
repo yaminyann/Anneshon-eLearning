@@ -1,0 +1,46 @@
+{% extends "common_code/base.html" %}
+{% block title %}My Courses{% endblock title %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="text-center mb-5 mb-md-8">
+        <h1>My course</h1>
+        <p class="font-size-lg text-capitalize">Discover your perfect program in our courses.</p>
+    </div>
+    
+        {% include 'Components/messages.html' %}
+    
+    <div class="mx-n4 mb-12" data-flickity='{"pageDots": true, "prevNextButtons": false, "cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'>
+        {% for c in course %}
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src="{{c.course.featured_image.url}}" alt="featured_image">
+                    </a>
+    
+                    <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
+                        <div class="badge badge-lg badge-white ms-auto fw-normal text-black">Enrolled</div>
+                    </span>
+                </div>
+    
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">{{c.course.category}}</span></a>
+    
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">{{c.course.title}}</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

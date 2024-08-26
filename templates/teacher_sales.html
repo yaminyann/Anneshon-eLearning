@@ -1,0 +1,14 @@
+<h2>Your Course Sales</h2>
+{% for course in courses %}
+    <div class="course-details">
+        <h3>{{ course.title }}</h3>
+        <p>Price: {{ course.price }}</p>
+        <p>Discount: {{ course.discount }}%</p>
+        <p>Sell Price: {% discount_calculation course.price course.discount %}</p>
+        <p>Total Sales: {{ course.course_sales.sales_count }}</p>
+        <p>Teacher Earnings: {{ course.course_sales.teacher_earnings }}</p>
+        <p>Admin Earnings: {{ course.course_sales.admin_earnings }}</p>
+    </div>
+{% empty %}
+    <p>No sales data available.</p>
+{% endfor %}

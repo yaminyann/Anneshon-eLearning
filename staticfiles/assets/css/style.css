@@ -1,0 +1,140 @@
+*{
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.profileImg {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-dialog {
+  max-width: 350px !important;
+  @media (max-width: 575px) {
+    max-width: 280px !important;
+  }
+}
+.listGrpItem:hover {
+  background: #f8fdff;
+  color: rgb(103, 132, 249);
+  border-radius: 5px;
+  transition: all 0.5s ease;
+}
+.carousel .icon {
+  font-size: 2.4rem;
+  color: #989898;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #0084ff;
+  }
+}
+.carousel-indicators [data-bs-target] {
+  width: 19px;
+  height: 0;
+  margin-right: 10px;
+  background: #989898;
+  border-radius: 50%;
+  transition: all 0.7s ease;
+}
+.carousel-indicators .active {
+  background: #0084ff;
+  width: 22px;
+  height: 2px;
+}
+
+@media (max-width: 575px) {
+  .carousel-inner .carouselImg {
+    display: none;
+  }
+  .carousel-inner {
+    padding: 0 20px;
+  }
+  .carousel-inner h1 {
+    font-size: 36px;
+  }
+  .carousel-inner a {
+    font-size: 16px;
+    padding: 10px 5px !important;
+  }
+  .carousel-indicators {
+    display: none;
+  }
+  .carousel .icon {
+    font-size: 2rem !important;
+  }
+}
+
+/* modal  */
+
+.paymentModal {
+  max-width: 1050px !important;
+  height: 100%;
+}
+
+.modal-body {
+  padding: 1rem;
+}
+.modal-content {
+  padding: 20px;
+}
+.form-label {
+  font-size: 14px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.Instruction {
+  color: rgb(0, 63, 15);
+}
+.payDesc {
+  color: #3b3b3b;
+}
+.paymentContainer {
+  b {
+    color: rgb(0, 93, 22);
+  }
+  input,
+  select:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+}
+@media screen and (max-width: 575px) {
+  .paymentRight {
+    margin-top: 30px;
+    text-align: center !important;
+  }
+  .modal-content {
+    padding: 0;
+  }
+}
+#paymentMethod,
+.payInput {
+  padding: 5px 5px !important;
+}
+#liveToastBtn {
+  padding: 6px 5px;
+  color: #28a745;
+}
+
+#liveToastBtn:hover {
+  color: rgb(0, 59, 23) !important ;
+  background: #c9ffd5;
+  border: 1px solid rgb(217, 255, 223);
+}
+.hover-animate:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.serviceCard:hover {
+  transform: scale(1.05);
+}
+.serviceCard {
+  transition: transform 0.9s;
+}
