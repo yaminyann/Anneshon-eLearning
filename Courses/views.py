@@ -120,8 +120,8 @@ def CoursesDetails(request, slug):
         
         # check transaction id unique or not
         if Payment.objects.filter(transaction_id=transaction_id).exists():
-            messages.error(request, 'tx id already used')
-            return redirect('courseDetails',slug=courses.slug)
+            messages.error(request, 'দুংখিত, আপনার পেমেন্ট তথ্য আমরা গ্রহণ করতে পারছিনা, সঠিক নাম্বার এবং ট্রানজাকশন আয়ডি বসিয়ে আবার প্রেরণ করুন।')
+            return redirect('courseDetails',slug=courses.slug,)
         
         # create payment object and show in admin panel
         Payment.objects.create(
@@ -132,7 +132,7 @@ def CoursesDetails(request, slug):
             transaction_id=transaction_id,
             amount = amount
         )
-        return redirect('404')
+        return redirect('pay_success')
     
     context = {
         'courses':courses,
@@ -158,7 +158,7 @@ def CheckOut(request, slug):
             course = course
         )
         course.save()
-        messages.success(request, 'Congratulations - Apni Course a successfully enrolled korechen !')
+        messages.success(request, 'কোর্সটি সফলভাবে ক্রয় করা হয়েছে।')
         return redirect('myCourses')
 
 
@@ -179,15 +179,19 @@ def My_Courses(request):
 
 
 # Watch course Video
-def Watch_Course(request,slug):
-    course = Courses_Upload.objects.filter(slug=slug)
-
-    if course.exists():
-        course = course.first()
-    else:
-        return redirect('404')
+def Watch_Course(request,course_id,video_serial=1):
+    course = get_object_or_404(Courses_Upload, id=course_id)
+    video = get_object_or_404(Video, course=course, serial=video_serial)
+    
+    # serial wise play logic
+    next_video = Video.objects.filter(course=course, serial__gt=video.serial).order_by('serial').first()
+    previous_video = Video.objects.filter(course=course, serial__lt=video.serial).order_by('-serial').first()
+    
     context = {
         'course':course,
+        'video':video,
+        'next_video':next_video,
+        'previous_video':previous_video
     }
     return render(request, 'Courses/watch.html', context)
 

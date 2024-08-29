@@ -66,8 +66,8 @@
   }
 }
 
-/* modal  */
 
+/* modal  */
 .paymentModal {
   max-width: 1050px !important;
   height: 100%;
@@ -138,3 +138,4 @@
 .serviceCard {
   transition: transform 0.9s;
 }
+

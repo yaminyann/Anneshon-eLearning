@@ -6,27 +6,27 @@
 {% block content %}
 <!-- course details page start -->
 <!-- BREADCRUMBS================================================== -->
-<div class="container">
+<!-- <div class="container">
     <nav class="mb-5 mb-md-8 mt-2" aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-scroll">
             <li class="breadcrumb-item">
                 <a class="text-gray-800" href="{% url 'HomePage' %}">
                     হোম
                 </a>
-            </li>
+            </li> -->
             <!-- <li class="breadcrumb-item">
                     <a class="text-gray-800">
                         Courses List
                     </a>
                 </li> -->
-            <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+            <!-- <li class="breadcrumb-item text-gray-800 active" aria-current="page">
                 কোর্স সম্পর্কে
             </li>
         </ol>
     </nav>
-</div>
+</div> -->
 <!-- COURSE ================================================== -->
-<div class="container">
+<div class="container py-5">
     {% include 'Components/messages.html' %}
     <div class="row mb-8">
         <div class="col-lg-8 mb-6 mb-lg-0 position-relative">
@@ -108,9 +108,8 @@
                 <div class="tab-pane fade show active" id="pills-overview" role="tabpanel"
                     aria-labelledby="pills-overview-tab">
                     <h3 class="">কোর্স সম্পর্কে বিস্তারিত</h3>
-                    <p class="mb-6 line-height-md">{{courses.description | slice:':500'}}</p>
-                    <p class="collapse mb-6 line-height-md" id="readcollapseExample">{{courses.description |
-                        slice:'500:'}}</p>
+                    <p class="mb-6 line-height-md">{{courses.description | truncatewords:50}}</p>
+                    <p class="collapse mb-6 line-height-md" id="readcollapseExample">{{courses.description |truncatewords:1000}}</p>
                     <a class="text-teal read-more h6 d-inline-block mb-8" data-bs-toggle="collapse"
                         href="#readcollapseExample" role="button" aria-expanded="false"
                         aria-controls="readcollapseExample">
@@ -152,7 +151,7 @@
                         </div>
 
                         <div class="col-md">
-                            <ul class="list-style-v1 list-unstyled ms-xl-6">
+                            <ul class="list-style-v1 list-unstyled">
                                 {% for learn in courses.learn_points.all|slice:'7:' %}
                                 <li>{{learn.points}}</li>
                                 {% endfor %}
@@ -161,7 +160,7 @@
                     </div>
 
                     <h3 class="mb-5">কোর্সটি করার জন্য যা যা প্রয়োজন</h3>
-                    <ul class="list-style-v2 list-unstyled">
+                    <ul class="list-style-v1 list-unstyled">
                         {% for requirement in courses.requirement_points.all %}
                         <li>{{requirement.points}}</li>
                         {% endfor %}
@@ -503,7 +502,7 @@
             <!-- SIDEBAR FILTER
                 ================================================== -->
             <div class="d-block d-block rounded border p-2 shadow mb-6 bg-white">
-                <a href="https://www.youtube.com/watch?v=9I-Y6VQ6tyI" class="d-block sk-thumbnail rounded mb-1"
+                <a href="https://www.youtube.com/watch?v={{courses.featured_video}}" class="d-block sk-thumbnail rounded mb-1"
                     data-fancybox>
                     <div
                         class="h-60p w-60p rounded-circle bg-white size-20-all d-inline-flex align-items-center justify-content-center position-absolute center z-index-1">
@@ -515,8 +514,8 @@
                         </svg>
 
                     </div>
-                    <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-2.jpg' %}"
-                        alt="...">
+                    <img class="rounded shadow-light-lg" src="{{courses.featured_image.url}}"
+                        alt="featured_image">
                 </a>
 
                 <div class="pt-5 pb-4 px-5 px-lg-3 px-xl-5">
@@ -632,15 +631,27 @@
                                                     <b id="accountType">বিকাশ</b> একাউন্ট এ আপনার কোর্স ফি পাঠান
                                                 </p>
                                                 <ul>
-                                                    <li id="accountNumber">
-                                                        <b>বিকাশ</b> পারসোনাল: <b>01938387917</b>
+                                                    <li class="" id="accountNumber">
+                                                        <b>বিকাশ / নগদ / রকেট </b> <br>পারসোনাল: 
+                                                        <b><span id="text-to-copy">01938387917</span></b> 
+                                                        <button class="fa-solid fa-copy rounded bg-white rounded border-0" onclick="copyToClipboard()">
+                                                            <b>কপি করুন</b>
+                                                        </button>
                                                     </li>
-                                                    <li id="accountNumber">
-                                                        <b>নগদ</b> পারসোনাল: <b>01938387917</b>
+                                                    <!-- <li class="" id="accountNumber">
+                                                        <b>বিকাশ</b> পারসোনাল: 
+                                                        <b><span id="text-to-copy">87917</span></b> |
+                                                        <button class="fa-solid fa-copy rounded" onclick="copyToClipboard()">
+                                                            <span>Copy Korun</span>
+                                                        </button>
                                                     </li>
-                                                    <li id="accountNumber">
-                                                        <b>রকেট</b> পারসোনাল: <b>01938387917</b>
-                                                    </li>
+                                                    <li class="" id="accountNumber">
+                                                        <b>বিকাশ</b> পারসোনাল: 
+                                                        <b><span id="text-to-copy">3769376</span></b> |
+                                                        <button class="fa-solid fa-copy rounded" onclick="copyToClipboard()">
+                                                            <span>Copy Korun</span>
+                                                        </button>
+                                                    </li> -->
                                                 </ul>
                                                 <p class="payDesc">
                                                     ফি পাঠানোর পরে, আপনার তালিকাভুক্তির অনুরোধ সম্পূর্ণ করার
@@ -672,7 +683,7 @@
                     {% endif %}
                     {% endif %}
                     {% else %}
-                    <a href="{% url 'watch' courses.slug %}" type="button" class="btn btn-success btn-block mb-3 lift">
+                    <a href="{% url 'watch' courses.id %}" type="button" class="btn btn-success btn-block mb-3 lift">
                         শুরু করুন
                     </a>
                     {% endif %}
@@ -799,21 +810,21 @@
 
 <!-- course details end here -->
 <!-- related course item -->
-{% if related_course %}
-<div class="text-center mb-5 mb-md-8">
-    <h1>সম্পর্কিত কোর্সসমূহ</h1>
+<!-- {% if related_course %} -->
+<!-- <div class="text-center mb-5 mb-md-8">
+    <h1>অন্যান্য কোর্সসমূহ</h1>
     <!-- <p class="font-size-lg text-capitalize">আমাদের কোর্সে খুঁজে নিন আপনার উপযুক্ত প্রোগ্রাম।</p> -->
-</div>
+<!-- </div>
 
 <div class="container pb-4 pb-xl-7">
     <div class="row row-cols-md-2 row-cols-xl-3 mb-6 mb-xl-3">
         <!-- course item start -->
-        {% for related in related_course %}
+        <!-- {% for related in related_course %}
         <div class="col-12 col-md-6 col-xl-4 col-wd-3 pb-4 pb-md-7" style="padding-right:15px;padding-left:15px;">
             <!-- Card -->
-            <div class="card border shadow p-2 rounded-lg sk-fade">
+            <!-- <div class="card border shadow p-2 rounded-lg sk-fade">
                 <!-- Image -->
-                <div class="card-zoom position-relative">
+                <!-- <div class="card-zoom position-relative">
 
                     <a href="{{related.get_absolute_url}}" class="card-img sk-thumbnail img-ratio-9 d-block">
                         <img class="rounded shadow-light-lg" src="{{related.featured_image.url}}" alt="featured_image">
@@ -827,7 +838,7 @@
                 </div>
 
                 <!-- Footer -->
-                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                <!-- <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                     <a href="{{related.get_absolute_url}}" class>
                         <div
                             class="avatar avatar-xl badge-float position-absolute top-0 right-0 mt-n6 me-5 rounded-circle shadow border border-white border-w-lg">
@@ -837,11 +848,11 @@
                     </a>
 
                     <!-- Preheading -->
-                    <a href="{% url 'Courses' related.category.slug %}"><span
+                    <!-- <a href="{% url 'Courses' related.category.slug %}"><span
                             class="mb-1 d-inline-block text-gray-800">{{related.category.name}}</span></a>
 
                     <!-- Heading -->
-                    <div class="position-relative">
+                    <!-- <div class="position-relative">
                         <a href="{{related.get_absolute_url}}" class="d-block stretched-link">
                             <h4 class="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{{related.title}}
                             </h4>
@@ -860,13 +871,13 @@
                             </div>
                         </div> -->
 
-                        <div class="row mx-n2 align-items-end">
+                        <!-- <div class="row mx-n2 align-items-end">
                             <div class="col px-2">
                                 <ul class="nav mx-n3">
                                     <li class="nav-item px-3">
                                         <div class="d-flex align-items-center">
                                             <div class="me-2 d-flex icon-uxs text-secondary">
-                                                <!-- Icon -->
+                                                
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -881,7 +892,7 @@
                                     <li class="nav-item px-3">
                                         <div class="d-flex align-items-center">
                                             <div class="me-2 d-flex icon-uxs text-secondary">
-                                                <!-- Icon -->
+                                                
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -912,15 +923,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
+        </div> 
+        {% endfor %} -->
         <!-- course item end -->
-    </div>
+    <!-- </div>
 
-</div>
-{% else %}
+</div> -->
+<!-- {% else %}
 {% endif %}
-</div>
+</div> --> 
 
 
 <!-- course details page end -->

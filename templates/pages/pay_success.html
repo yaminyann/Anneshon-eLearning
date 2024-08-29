@@ -1,0 +1,19 @@
+{% extends "common_code/base.html" %}
+{% block title %}payment successfully{% endblock title %}
+{% load static %}
+
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <p>আপনার পেমেন্ট তথ্য সংগ্রহ করা হয়েছে, আমাদের টিম ২-৪ ঘন্টার মধ্যে আপনার পেমেন্ট টি চেক করে ভেরিফাইড করবেন। ভেরিফাইড সম্পুর্ণ হলে আপনার প্রোফাইলে কোর্স টি সংযুক্ত হয়ে যাবে।
+    </p>
+    <p><b><a href="{% url 'HomePage' %}" class="text-dark ">হোম</a></b> এ ফিরে যান।
+    </p>
+</div>
+<div class="container" style="width: 100vw; margin: 0; padding: 0;">
+    <iframe class="py-5"
+        style="width: 100vw; height: 40vh; border: none; margin: 0; padding: 0;" 
+        src="https://lottie.host/embed/0b4cf486-1302-46b7-a1ac-fbc2127d8e52/iSqpgS0DHi.json">
+    </iframe>
+</div>
+{% endblock content %}

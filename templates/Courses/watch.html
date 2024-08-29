@@ -54,11 +54,11 @@
 
                 <!-- Lesson Title -->
                 <div class="ms-md-6 ms-wd-12 ms-xl-10 me-auto mb-5 mb-md-0">
-                    <h4 class="mb-0 line-clamp-2 ms-wd-3">{{course.title}}</h4>
+                    <!-- <h4 class="mb-0 line-clamp-2 ms-wd-3">{{course.title}}</h4> -->
                 </div>
 
                 <!-- Back to Course -->
-                <a href="{% url 'HomePage' %}" class="btn btn-sm btn-primary ms-md-6 px-6 mb-3 mb-md-0 flex-shrink-0">Back to Course</a>
+                <a href="{% url 'HomePage' %}" class="btn btn-sm btn-primary ms-md-6 px-6 mb-3 mb-md-0 flex-shrink-0">হোম এ ফিরে যান</a>
             </div>
         </div>
     </header>
@@ -161,13 +161,12 @@
             </div>
         </div>
 
+        <!-- serial wise play video -->
         <div class="container">
             <div class="row mb-11">
                 <div class="col-lg-11 col-wd-12 ms-lg-auto pt-11 pt-lg-8">
-                    <h2 class="font-size-xl mb-6">
-                        {{video.title}}
+                    <h2 class="font-size-xl mb-6">{{video.title}}
                     </h2>
-
                     <a href="https://www.youtube.com/watch?v={{video.youtube_id}}" class="d-block sk-thumbnail rounded mb-8" data-fancybox>
                         <div class="h-90p w-90p rounded-circle bg-white size-30-all d-inline-flex align-items-center justify-content-center position-absolute center z-index-1">
                             <!-- Icon -->
@@ -179,12 +178,12 @@
                         <img class="rounded shadow-light-lg" src="{{video.thumbnail.url}}" alt="Video_Thumbnail">
                     </a>
 
-                    <!-- <h3 class="">Course Description</h3>
+                    <!-- <h3 class="">Course Description</h3> -->
 
-                    <p class="mb-6 line-height-md">Do you want to become a UI/UX designer but you don't know where to start? This course will allow you to develop your user interface design skills and you can add UI designer to your CV and start getting clients for your skills.</p>
-                    <p class="mb-6 line-height-md">Hi everyone. I'm Arash and I'm a UI/UX designer. In this course, I will help you learn and master Figma app comprehensively from scratch. Figma is an innovative and brilliant tool for User Interface design. It's used by everyone from entrepreneurs and start-ups to Apple, Airbnb, Facebook, etc.</p>
-                    <p class="collapse mb-6 line-height-md" id="readcollapseExample">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente  I will help you learn and master Figma app comprehensively from scratch. Figma is an innovative and brilliant tool for User Interface design. It's used by everyone from entrepreneurs ea proident.</p>
-                    <a class="text-teal read-more h6 d-inline-block mb-8" data-bs-toggle="collapse" href="#readcollapseExample" role="button" aria-expanded="false" aria-controls="readcollapseExample">
+                    <!-- <p class="mb-6 line-height-md">{{course.description}}</p> -->
+                    <!-- <p class="mb-6 line-height-md">Hi everyone. I'm Arash and I'm a UI/UX designer. In this course, I will help you learn and master Figma app comprehensively from scratch. Figma is an innovative and brilliant tool for User Interface design. It's used by everyone from entrepreneurs and start-ups to Apple, Airbnb, Facebook, etc.</p>
+                    <p class="collapse mb-6 line-height-md" id="readcollapseExample">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente  I will help you learn and master Figma app comprehensively from scratch. Figma is an innovative and brilliant tool for User Interface design. It's used by everyone from entrepreneurs ea proident.</p> -->
+                    <!-- <a class="text-teal read-more h6 d-inline-block mb-8" data-bs-toggle="collapse" href="#readcollapseExample" role="button" aria-expanded="false" aria-controls="readcollapseExample">
                         <span class="d-inline-flex align-items-center more">
                             Read More
                             <span class="d-flex align-items-center justify-content-center bg-teal rounded-circle ms-2 p-2 w-26p">
@@ -200,15 +199,21 @@
                     </a> -->
 
                     <div class="d-md-flex align-items-center justify-content-between mb-8">
-                        <a href="#" class="btn btn-teal d-flex align-items-center text-white mb-5 mb-md-0 btn-block mw-md-280p justify-content-center">
-                            <i class="fas fa-arrow-left font-size-xs"></i>
-                            <span class="ms-3">Introduction</span>
-                        </a>
-                        <a href="#" class="btn btn-teal d-flex align-items-center text-white btn-block mw-md-280p justify-content-center mt-0">
-                            <span class="me-3">Structure of the course</span>
-                            <i class="fas fa-arrow-right font-size-xs"></i>
-                        </a>
-                    </div>
+                        {% if previous_video %}
+                            <a href="{% url 'watch_video_by_serial' course.id previous_video.serial %}" class="btn btn-teal bg-dark d-flex align-items-center text-white mb-5 mb-md-0 btn-block mw-md-280p justify-content-center">
+                                <i class="fas fa-arrow-left font-size-xs"></i>
+                                <span class="ms-3">আগের ভিডিও</span>
+                            </a>
+                        {% endif %}
+
+                        {% if next_video %}
+                            <a href="{% url 'watch_video_by_serial' course.id next_video.serial %}" class="btn btn-teal bg-dark d-flex align-items-center text-white btn-block mw-md-280p justify-content-center mt-0">
+                                <span class="me-3">পরবর্তী ভিডিও </span>
+                                <i class="fas fa-arrow-right font-size-xs"></i>
+                            </a>
+                        {% endif %}
+                        
+                    </div> 
 
                     <!-- <h3 class="mb-6">Comment</h3>
                     <ul class="list-unstyled pt-2">

@@ -559,13 +559,13 @@
                 <!-- List -->
                 <ul class="list-unstyled text-gray-800 font-size-sm-alone mb-6 mb-md-8 mb-lg-0">
                   <li class="mb-3">
-                    <a href="about-v1.html" class="text-reset">আমাদের সম্পর্কে</a>
+                    <a href="{% url 'termsNservices' %}" class="text-reset">আমাদের সম্পর্কে</a>
                   </li>
                   <li class="mb-3">
-                    <a href="about-v2.html" class="text-reset">অ্যাফিলিয়েট হিসাবে যোগ দিন</a>
+                    <a href="#" class="text-reset">অ্যাফিলিয়েট হিসাবে যোগ দিন</a>
                   </li>
                   <li class="mb-3">
-                    <a href="contact-us.html" class="text-reset">শিক্ষক হিসাবে যোগ দিন</a>
+                    <a href="#" class="text-reset">শিক্ষক হিসাবে যোগ দিন</a>
                   </li>
                 </ul>
               </div>
@@ -598,13 +598,13 @@
                 <!-- List -->
                 <ul class="list-unstyled text-gray-800 font-size-sm-alone mb-6 mb-md-8 mb-lg-0">
                   <li class="mb-3">
-                    <a href="course-list-v2.html" class="text-reset">ব্লগ</a>
+                    <a href="#" class="text-reset">ব্লগ</a>
                   </li>
                   <li class="mb-3">
-                    <a href="course-list-v2.html" class="text-reset">বুক স্টোর</a>
+                    <a href="#" class="text-reset">বুক স্টোর</a>
                   </li>
                   <li class="mb-3">
-                    <a href="course-list-v6.html" class="text-reset">সার্ভিস</a>
+                    <a href="#" class="text-reset">সার্ভিস</a>
                   </li>
           
                 </ul>
@@ -677,7 +677,20 @@
     </footer>
 
     <!-- JAVASCRIPT ================================================== -->
-
+    <script>
+      function copyToClipboard() {
+        const textToCopy = document.getElementById("text-to-copy").innerText;
+    
+        // Use the modern clipboard API to copy text
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Successfully copied to clipboard
+            alert("নাম্বারটি সফলভাবে কপি হয়েছে --> " + textToCopy);
+        }).catch(err => {
+            // Handle any errors that occur during the copy process
+            alert("নাম্বারটি কপি হইনি " + err);
+        });
+    }
+    </script>
     <!-- Libs JS -->
 
     <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
